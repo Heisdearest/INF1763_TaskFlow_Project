@@ -1,0 +1,13 @@
+-encoding
+UTF-8
+-d
+out
+C:\\Users\\mande\\Projet_TasFlow\\INF1763_TaskFlow_Project\\src\\taskflow\\Main.java
+C:\\Users\\mande\\Projet_TasFlow\\INF1763_TaskFlow_Project\\src\\taskflow\\console\\MenuConsole.java
+C:\\Users\\mande\\Projet_TasFlow\\INF1763_TaskFlow_Project\\src\\taskflow\\modele\\Statut.java
+C:\\Users\\mande\\Projet_TasFlow\\INF1763_TaskFlow_Project\\src\\taskflow\\modele\\Tache.java
+C:\\Users\\mande\\Projet_TasFlow\\INF1763_TaskFlow_Project\\src\\taskflow\\service\\GestionTaches.java
+C:\\Users\\mande\\Projet_TasFlow\\INF1763_TaskFlow_Project\\src\\taskflow\\service\\GestionTachesImpl.java
+C:\\Users\\mande\\Projet_TasFlow\\INF1763_TaskFlow_Project\\src\\taskflow\\stockage\\ChargementTaches.java
+C:\\Users\\mande\\Projet_TasFlow\\INF1763_TaskFlow_Project\\src\\taskflow\\stockage\\FormatTaches.java
+C:\\Users\\mande\\Projet_TasFlow\\INF1763_TaskFlow_Project\\src\\taskflow\\stockage\\SauvegardeTaches.java
