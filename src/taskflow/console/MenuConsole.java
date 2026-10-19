@@ -13,6 +13,22 @@ import taskflow.service.GestionTaches;
 import taskflow.stockage.SauvegardeTaches;
 
 public final class MenuConsole {
+    private boolean afficherMessageSiListeVide(
+        java.util.List<Tache> liste) {
+
+    if (liste.isEmpty()) {
+
+        System.out.println(
+            "Aucune tâche enregistrée."        );
+
+        System.out.println(
+            "Utilisez l'option 1 pour ajouter votre première tâche."        );
+
+        return true;
+    }
+
+    return false;
+    }
 
     private static final DateTimeFormatter DATE =
         DateTimeFormatter.ofPattern("uuuu-MM-dd")
@@ -138,23 +154,15 @@ public final class MenuConsole {
 
                         var liste = gestion.obtenirToutesLesTaches();
 
-                        if (liste.isEmpty()) {
+                        if (!afficherMessageSiListeVide(liste)) {
 
                             System.out.println(
-                                "Aucune tâche enregistrée."
-                            );
-
-                        } else {
-
-                            System.out.println(
-                                "\n========== LISTE DES TÂCHES =========="
-                            );
+                                "\n========== LISTE DES TÂCHES =========="        );
 
                             for (Tache tache : liste) {
 
                                 System.out.println(
-                                    "--------------------------------------"
-                                );
+                                    "--------------------------------------"            );
 
                                 System.out.println(
                                     "Identifiant : " + tache.getId()
@@ -173,16 +181,12 @@ public final class MenuConsole {
                                 );
 
                                 System.out.println(
-                                    "Échéance    : "
-                                    + (tache.getEcheance() == null
-                                        ? "Aucune"
-                                        : tache.getEcheance())
+                                    "Échéance    : "+ (tache.getEcheance() == null? "Aucune"                    : tache.getEcheance())
                                 );
                             }
 
                             System.out.println(
-                                "--------------------------------------"
-                            );
+                                "--------------------------------------"        );
 
                             System.out.println(
                                 "Nombre total de tâches : " + liste.size()
