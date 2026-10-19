@@ -97,6 +97,12 @@ public final class GestionTachesImpl implements GestionTaches {
     @Override
     public boolean terminerTache(int id) {
 
+        if (id <= 0) {
+            throw new IllegalArgumentException(
+                "L'identifiant doit être un entier positif."
+            );
+        }
+
         Tache tache = trouverParId(id);
 
         if (tache.getStatut() == Statut.TERMINEE) {
