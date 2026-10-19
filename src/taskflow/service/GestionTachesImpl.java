@@ -119,12 +119,25 @@ public final class GestionTachesImpl implements GestionTaches {
             int id,
             Priorite priorite) {
 
-        Objects.requireNonNull(
-            priorite,
-            "Priorité obligatoire"
-        );
+        if (id <= 0) {
+            throw new IllegalArgumentException(
+                "L'identifiant doit être un entier positif."
+            );
+        }
 
-        trouverParId(id).setPriorite(priorite);
+        if (priorite == null) {
+            throw new IllegalArgumentException(
+                "La priorité est obligatoire."
+            );
+        }
+
+        Tache tache = trouverParId(id);
+
+        if (tache.getPriorite() == priorite) {
+            return;
+        }
+
+        tache.setPriorite(priorite);
     }
 
     @Override
