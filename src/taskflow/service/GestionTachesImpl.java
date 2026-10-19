@@ -18,27 +18,59 @@ public final class GestionTachesImpl implements GestionTaches {
             Priorite priorite,
             LocalDate echeance) {
 
+        // Vérifier que le titre existe.
+        if (titre == null || titre.isBlank()) {
+            throw new IllegalArgumentException(
+                "Le titre de la tâche est obligatoire."
+            );
+        }
+
+        // On Supprime les espaces inutiles.
+        String titreNettoye = titre.strip();
+
+        // On Vérifie la longueur du titre.
+        if (titreNettoye.length() > 150) {
+            throw new IllegalArgumentException(
+                "Le titre ne doit pas dépasser 150 caractères."
+            );
+        }
+
+        // Définir une priorité par défaut.
+        Priorite prioriteFinale =
+            priorite == null
+                ? Priorite.NORMALE
+                : priorite;
+
+        // Vérifier la disponibilité des identifiants.
         if (prochainId <= 0 ||
             prochainId == Integer.MAX_VALUE) {
 
             throw new IllegalStateException(
-                "Plus d'identifiants disponibles."
+                "Aucun nouvel identifiant disponible."
             );
         }
 
-        Tache tache = new Tache(
+        // Créer la tâche.
+        Tache nouvelleTache = new Tache(
             prochainId,
-            titre,
-            priorite == null ? Priorite.NORMALE : priorite,
+            titreNettoye,
+            prioriteFinale,
             echeance,
             Statut.A_FAIRE
         );
 
-        taches.put(tache.getId(), tache);
+        // Ajouter la tâche à la collection.
+        taches.put(
+            nouvelleTache.getId(),
+            nouvelleTache
+        );
+
+        // Préparer le prochain identifiant.
         prochainId++;
 
-        return tache;
+        return nouvelleTache;
     }
+
 
     @Override
     public List<Tache> obtenirToutesLesTaches() {
