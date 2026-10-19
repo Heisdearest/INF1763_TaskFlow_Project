@@ -82,11 +82,11 @@ has context menu
 
 | ID    | Récit utilisateur                                               | Niveau de priorité | État    |
 | ----- | --------------------------------------------------------------- | ------------------ | ------- |
-| TF-01 | Ajouter une tâche                                               | Haute              | À faire |
-| TF-02 | Afficher toutes les tâches                                      | Haute              | À faire |
-| TF-03 | Consulter une liste vide                                        | Haute              | À faire |
-| TF-04 | Marquer une tâche comme terminée                                | Haute              | À faire |
-| TF-05 | Modifier la priorité d'une tâche                                | Haute              | À faire |
+| TF-01 | Ajouter une tâche                                               | Haute              | Terminé |
+| TF-02 | Afficher toutes les tâches                                      | Haute              | Terminé |
+| TF-03 | Consulter une liste vide                                        | Haute              | Terminé |
+| TF-04 | Marquer une tâche comme terminée                                | Haute              | Terminé |
+| TF-05 | Modifier la priorité d'une tâche                                | Haute              | À vérifier |
 | TF-06 | Ajouter une échéance                                            | Haute              | À faire |
 | TF-07 | Modifier une échéance                                           | Haute              | À faire |
 | TF-08 | Supprimer une échéance                                          | Haute              | À faire |
