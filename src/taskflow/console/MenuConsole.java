@@ -136,26 +136,56 @@ public final class MenuConsole {
 
                     case "2" -> {
 
-                        if (gestion.obtenirToutesLesTaches()
-                                .isEmpty()) {
+                        var liste = gestion.obtenirToutesLesTaches();
+
+                        if (liste.isEmpty()) {
 
                             System.out.println(
                                 "Aucune tâche enregistrée."
                             );
-                        }
 
-                        for (Tache tache :
-                                gestion.obtenirToutesLesTaches()) {
+                        } else {
 
-                            System.out.printf(
-                                "#%d | %s | %s | %s | %s%n",
-                                tache.getId(),
-                                tache.getTitre(),
-                                tache.getPriorite(),
-                                tache.getEcheance() == null
-                                    ? "Sans échéance"
-                                    : tache.getEcheance(),
-                                tache.getStatut()
+                            System.out.println(
+                                "\n========== LISTE DES TÂCHES =========="
+                            );
+
+                            for (Tache tache : liste) {
+
+                                System.out.println(
+                                    "--------------------------------------"
+                                );
+
+                                System.out.println(
+                                    "Identifiant : " + tache.getId()
+                                );
+
+                                System.out.println(
+                                    "Titre       : " + tache.getTitre()
+                                );
+
+                                System.out.println(
+                                    "Priorité    : " + tache.getPriorite()
+                                );
+
+                                System.out.println(
+                                    "Statut      : " + tache.getStatut()
+                                );
+
+                                System.out.println(
+                                    "Échéance    : "
+                                    + (tache.getEcheance() == null
+                                        ? "Aucune"
+                                        : tache.getEcheance())
+                                );
+                            }
+
+                            System.out.println(
+                                "--------------------------------------"
+                            );
+
+                            System.out.println(
+                                "Nombre total de tâches : " + liste.size()
                             );
                         }
                     }
