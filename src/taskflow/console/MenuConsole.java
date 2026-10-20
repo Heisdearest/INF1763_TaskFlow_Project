@@ -244,27 +244,63 @@ public final class MenuConsole {
                     }
 
                     case "7" -> {
+ 
+                        System.out.println(
 
+                            "Sauvegarde des tâches en cours..."
+
+                        );
+                    
                         try {
-
+                    
                             SauvegardeTaches.sauvegarder(
+
                                 fichier,
+
                                 gestion.obtenirToutesLesTaches()
-                            );
 
+                            );
+                    
                             System.out.println(
-                                "Sauvegarde réussie."
-                            );
 
+                                "Les tâches ont été sauvegardées avec succès."
+
+                            );
+                    
                         } catch (IOException e) {
+                    
+                            System.out.println(
 
-                            System.err.println(
-                                "Échec de sauvegarde : "
-                                + e.getMessage()
+                                "ERREUR : la sauvegarde a échoué."
+
                             );
-                        }
-                    }
+                    
+                            System.out.println(
 
+                                "Détail : " + e.getMessage()
+
+                            );
+                    
+                            System.out.println(
+
+                                "Vérifiez le dossier de destination "
+
+                                + "et les autorisations d'écriture."
+
+                            );
+                    
+                            System.out.println(
+
+                                "Les tâches restent disponibles "
+
+                                + "dans l'application."
+
+                            );
+
+                        }
+
+                    }
+ 
                     case "0" -> {
 
                         System.out.println(
