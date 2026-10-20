@@ -81,4 +81,25 @@ public final class Tache {
     
         this.echeance = nouvelleEcheance;
     }
+
+    public void modifierEcheance(LocalDate nouvelleEcheance) {
+    
+        if (nouvelleEcheance == null) {
+            throw new IllegalArgumentException(
+                "La nouvelle échéance est obligatoire."
+            );
+        }
+    
+        if (this.echeance == null) {
+            throw new IllegalStateException(
+                "Cette tâche ne possède aucune échéance à modifier."
+            );
+        }
+    
+        if (this.echeance.equals(nouvelleEcheance)) {
+            return;
+        }
+    
+        this.echeance = nouvelleEcheance;
+    }
 }

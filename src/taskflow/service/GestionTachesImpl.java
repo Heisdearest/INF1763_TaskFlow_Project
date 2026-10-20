@@ -144,8 +144,22 @@ public final class GestionTachesImpl implements GestionTaches {
     public void modifierEcheance(
             int id,
             LocalDate echeance) {
-
-        trouverParId(id).setEcheance(echeance);
+    
+        if (id <= 0) {
+            throw new IllegalArgumentException(
+                "L'identifiant doit être un entier positif."
+            );
+        }
+    
+        if (echeance == null) {
+            throw new IllegalArgumentException(
+                "La nouvelle échéance est obligatoire."
+            );
+        }
+    
+        Tache tache = trouverParId(id);
+    
+        tache.modifierEcheance(echeance);
     }
 
     @Override
@@ -253,4 +267,6 @@ public final class GestionTachesImpl implements GestionTaches {
     
         tache.ajouterEcheance(echeance);
     }
+
+
 }
