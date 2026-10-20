@@ -302,6 +302,22 @@ public final class MenuConsole {
                         }
 
                     }
+                    case "8" -> {
+                    
+                        int identifiant = id();
+                    
+                        LocalDate nouvelleDate = date(false);
+                    
+                        gestion.modifierEcheance(
+                            identifiant,
+                            nouvelleDate
+                        );
+                    
+                        System.out.println(
+                            "Date d'échéance modifiée avec succès."
+                        );
+                    }
+
  
                     case "0" -> {
 
