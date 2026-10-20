@@ -86,14 +86,14 @@ has context menu
 | TF-02 | Afficher toutes les tâches                                      | Haute              | Terminé |
 | TF-03 | Consulter une liste vide                                        | Haute              | Terminé |
 | TF-04 | Marquer une tâche comme terminée                                | Haute              | Terminé |
-| TF-05 | Modifier la priorité d'une tâche                                | Haute              | À vérifier |
-| TF-06 | Ajouter une échéance                                            | Haute              | À faire |
-| TF-07 | Modifier une échéance                                           | Haute              | À faire |
-| TF-08 | Supprimer une échéance                                          | Haute              | À faire |
-| TF-09 | Sauvegarder les tâches                                          | Haute              | À faire |
+| TF-05 | Modifier la priorité d'une tâche                                | Haute              | Terminé |
+| TF-06 | Ajouter une échéance                                            | Haute              | Terminé |
+| TF-07 | Modifier une échéance                                           | Haute              | À vérifier |
+| TF-08 | Supprimer une échéance                                          | Haute              | Terminé |
+| TF-09 | Sauvegarder les tâches                                          | Haute              | Terminé |
 | TF-10 | Recharger les tâches au démarrage                               | Haute              | À faire |
 | TF-11 | Démarrer sans fichier de données                                | Haute              | À faire |
 | TF-12 | Gérer un fichier illisible ou mal formé                         | Haute              | À faire |
-| TF-13 | Signaler un échec de sauvegarde                                 | Haute              | À faire |
-| TF-14 | Ajouter une tâche après rechargement sans conflit d'identifiant | Haute              | À faire |
+| TF-13 | Signaler un échec de sauvegarde                                 | Haute              | Terminé |
+| TF-14 | Ajouter une tâche après rechargement sans conflit d'identifiant | Haute              | À vérifier |
 | TF-15 | Quitter proprement l'application                                | Normale            | À faire |

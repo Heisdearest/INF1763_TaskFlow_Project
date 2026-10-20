@@ -87,3 +87,122 @@ Compilation de toutes les sources Java et du programme temporaire réussie. Les 
 ### Résultat global
 
 Compilation des sources Java et du programme temporaire réussie. Les 11 assertions comportementales ont réussi; aucune régression n'a été observée sur le retour `false` d'une tâche déjà terminée ni sur les données existantes après une erreur.
+
+## TF-05 — Modifier la priorité d'une tâche
+
+**Date :** 2026-10-19
+**Composant vérifié :** `GestionTachesImpl.modifierPriorite`
+**Méthode :** scénarios exécutés sur le service avec un programme de vérification Java temporaire.
+
+### Scénarios normaux et d'erreur
+
+- **Étapes :** modifier la priorité d'une tâche existante; répéter avec la même priorité; essayer les identifiants `0`, `-1` et `999`, puis une priorité nulle; vérifier l'état de la tâche après les erreurs.
+- **Résultat attendu :** une priorité valide est appliquée; les identifiants invalides/inconnus et la priorité nulle sont rejetés; les erreurs ne modifient pas la priorité courante.
+- **Résultat obtenu :** conforme.
+- **Statut :** Réussi — 7 assertions.
+
+## TF-06 — Ajouter une échéance
+
+**Date :** 2026-10-19
+**Composants vérifiés :** `GestionTachesImpl.ajouterEcheance`, option 5 de `MenuConsole`
+**Méthode :** tests du service et du parcours console avec des tâches et fichiers temporaires.
+
+### Scénarios normaux et d'erreur
+
+- **Étapes :** ajouter une date valide à une tâche sans échéance par le service et par le menu; essayer une échéance dupliquée, une date nulle et un identifiant non positif.
+- **Résultat attendu :** la date est enregistrée; les entrées invalides ou une seconde échéance sont refusées sans effacer la date existante; le menu confirme l'ajout.
+- **Résultat obtenu :** conforme.
+- **Statut :** Réussi — 6 assertions (5 service et 1 console).
+
+## TF-07 — Modifier une échéance
+
+**Date :** 2026-10-19
+**Composants vérifiés :** `GestionTachesImpl.modifierEcheance`, affichage des options de `MenuConsole`
+**Méthode :** tests du service et inspection automatisée du menu imprimé.
+
+### Scénario de service
+
+- **Étapes :** modifier l'échéance d'une tâche qui en possède déjà une; essayer une date nulle puis modifier une tâche sans échéance; vérifier que l'état reste inchangé après refus.
+- **Résultat attendu :** la nouvelle date valide est appliquée; les cas invalides sont rejetés sans modification.
+- **Résultat obtenu :** conforme — 4 assertions de service.
+- **Statut :** Réussi pour le service.
+
+### Vérification d'accessibilité dans le menu
+
+- **Étapes :** démarrer le menu, sélectionner l'option 8, saisir l'identifiant d'une tâche ayant déjà une échéance, saisir une nouvelle date, puis afficher la liste.
+- **Résultat attendu :** le menu affiche une option de modification identifiable; la nouvelle date est enregistrée, confirmée et visible dans la liste.
+- **Résultat obtenu :** conforme après ajout de « 8 - Modifier une échéance » au menu et renommage de l'option 5 en « Ajouter une échéance ».
+- **Statut :** Réussi — 4 assertions couvrant la visibilité de l'option, le message de confirmation, l'affichage de la nouvelle date et la valeur conservée par la tâche.
+
+## TF-08 — Supprimer une échéance
+
+**Date :** 2026-10-19
+**Composants vérifiés :** `GestionTachesImpl.supprimerEcheance`, option 6 de `MenuConsole`
+**Méthode :** tests du service et du parcours console.
+
+### Scénarios normaux et d'erreur
+
+- **Étapes :** supprimer une échéance existante, répéter la suppression, essayer les identifiants `0` et `999`, puis vérifier que la tâche est toujours présente; exécuter aussi l'action depuis le menu.
+- **Résultat attendu :** la première suppression retourne vrai et retire la date; la suivante retourne faux; les identifiants invalides/inconnus sont signalés; le menu confirme la suppression et la tâche reste présente.
+- **Résultat obtenu :** conforme.
+- **Statut :** Réussi — 7 assertions (6 service et 1 console).
+
+## TF-09 — Sauvegarder les tâches
+
+**Date :** 2026-10-19
+**Composants vérifiés :** `SauvegardeTaches`, `ChargementTaches`, option 7 de `MenuConsole`
+**Méthode :** sauvegardes et rechargements réalisés dans des répertoires temporaires.
+
+### Scénario normal
+
+- **Étapes :** sauvegarder deux tâches dans un chemin imbriqué inexistant; recharger le fichier et comparer les identifiants, titres, priorités, échéances et statuts; sauvegarder ensuite une tâche seule; vérifier également l'action de sauvegarde du menu.
+- **Résultat attendu :** les répertoires et le fichier sont créés, les données TF1 sont fidèles et une sauvegarde suivante remplace l'ancien contenu.
+- **Résultat obtenu :** conforme.
+- **Statut :** Réussi — 6 assertions (5 stockage et 1 console).
+
+## TF-13 — Signaler un échec de sauvegarde
+
+**Date :** 2026-10-19
+**Composants vérifiés :** `SauvegardeTaches`, option 7 de `MenuConsole`
+**Méthode :** destination configurée comme un répertoire existant afin de provoquer un échec d'écriture; scénario également exécuté via le menu.
+
+### Scénario d'erreur
+
+- **Étapes :** tenter une sauvegarde vers le répertoire; vérifier le signalement d'erreur, l'absence de message de succès, puis ajouter une tâche dans la même session.
+- **Résultat attendu :** une `IOException` est remontée par le stockage; le menu indique l'échec sans annoncer un succès; les données en mémoire restent disponibles et le menu continue.
+- **Résultat obtenu :** conforme.
+- **Statut :** Réussi — 5 assertions.
+
+## TF-14 — Ajouter une tâche après rechargement sans conflit d'identifiant
+
+**Date :** 2026-10-19
+**Composants vérifiés :** `ChargementTaches`, `GestionTachesImpl.remplacerToutes`, `GestionTachesImpl.ajouterTache`
+**Méthode :** sauvegarder deux tâches dont le plus grand identifiant vaut 8, charger le fichier dans une nouvelle gestion, puis créer une tâche.
+
+### Scénario normal
+
+- **Étapes :** recharger les tâches et ajouter une nouvelle tâche; vérifier l'identifiant attribué et la conservation des tâches rechargées.
+- **Résultat attendu :** la nouvelle tâche reçoit l'identifiant 9 et aucune tâche existante n'est remplacée.
+- **Résultat obtenu :** conforme.
+- **Statut :** Réussi — 2 assertions.
+
+### Réserve de revue
+
+La PR #26 est fusionnée, mais sa description porte sur des « données simulées » et non sur le récit TF-14 du backlog; aucune revue d'un autre membre n'est enregistrée dans GitHub pour cette PR. La vérification fonctionnelle réussit, mais les critères de revue et de traçabilité doivent être clarifiés avant de déclarer le récit terminé.
+
+### Résultat global TF-05 à TF-14
+
+Compilation de toutes les sources Java et des programmes de vérification réussie. 28 assertions ont été exécutées pour les scénarios TF-06 à TF-14, puis 3 assertions supplémentaires ont validé les parcours console TF-06, TF-08 et TF-09. Après correction du menu TF-07, 4 assertions supplémentaires ont validé le parcours de modification d'échéance.
+
+## TF-15 — Quitter proprement l'application
+
+**Date :** 2026-10-19
+**Composant vérifié :** option 0 de `MenuConsole`
+**Méthode :** parcours console testé avec saisie simulée et destinations temporaires.
+
+### Scénarios normaux et d'erreur
+
+- **Étapes :** quitter sans sauvegarder; accepter une sauvegarde avant de quitter; provoquer une erreur de sauvegarde, vérifier que la fermeture est annulée, puis choisir de quitter sans sauvegarder.
+- **Résultat attendu :** le choix explicite « non » quitte sans créer de fichier; « oui » sauvegarde avant de quitter; un échec de sauvegarde empêche la fermeture et permet à l'utilisateur de choisir à nouveau.
+- **Résultat obtenu :** conforme.
+- **Statut :** Réussi — 3 assertions.
