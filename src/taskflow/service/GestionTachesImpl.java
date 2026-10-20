@@ -149,35 +149,88 @@ public final class GestionTachesImpl implements GestionTaches {
     }
 
     @Override
+
     public void remplacerToutes(List<Tache> donnees) {
+    
+        if (donnees == null) {
 
-        Map<Integer, Tache> nouvelles =
-                new LinkedHashMap<>();
+            throw new IllegalArgumentException(
 
-        int max = 0;
+                "La liste des tâches ne peut pas être nulle."
 
+            );
+
+        }
+    
+        Map<Integer, Tache> nouvellesTaches =
+
+            new LinkedHashMap<>();
+    
+        int plusGrandId = 0;
+    
         for (Tache tache : donnees) {
-
-            if (nouvelles.putIfAbsent(
-                    tache.getId(), tache) != null) {
+    
+            if (tache == null) {
 
                 throw new IllegalArgumentException(
-                    "Identifiant dupliqué : " + tache.getId()
+
+                    "Une tâche chargée ne peut pas être nulle."
+
                 );
+
+            }
+    
+            int id = tache.getId();
+    
+            if (id <= 0) {
+
+                throw new IllegalArgumentException(
+
+                    "Identifiant invalide : " + id
+
+                );
+
+            }
+    
+            if (nouvellesTaches.containsKey(id)) {
+
+                throw new IllegalArgumentException(
+
+                    "Identifiant dupliqué : " + id
+
+                );
+
+            }
+    
+            nouvellesTaches.put(id, tache);
+    
+            if (id > plusGrandId) {
+
+                plusGrandId = id;
+
             }
 
-            max = Math.max(max, tache.getId());
         }
+    
+        if (plusGrandId == Integer.MAX_VALUE) {
 
-        if (max == Integer.MAX_VALUE) {
             throw new IllegalArgumentException(
-                "Identifiant maximal non pris en charge."
+
+                "Impossible de générer un nouvel identifiant."
+
             );
+
         }
+    
+        // Remplacer les données seulement après validation.
 
         taches.clear();
-        taches.putAll(nouvelles);
+    
+        taches.putAll(nouvellesTaches);
+    
+        // Préparer un identifiant supérieur au maximum chargé.
 
-        prochainId = max + 1;
+        prochainId = plusGrandId + 1;
+
     }
 }
