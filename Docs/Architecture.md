@@ -112,8 +112,8 @@ Cette répartition est à confirmer. Le fichier `MenuConsole.java` et la classe 
 - Chaque fonctionnalité doit être vérifiée selon ses critères d'acceptation et la Definition of Done.
 - Les vérifications manuelles et leurs résultats observés doivent être consignés dans `docs/verification.md`.
 - La version initiale fournie est une **base technique proposée** ; l'équipe doit la relire, l'adapter et produire ses propres contributions Git et Pull Requests.
-- Le programme ne sauvegarde pas automatiquement à la fermeture : l'utilisateur doit utiliser la commande de sauvegarde explicite.
-- Les classes fournies n'incluent pas de tests automatisés ; les vérifications manuelles exigées restent à effectuer.
+- Le programme ne sauvegarde pas automatiquement à la fermeture : il demande à l'utilisateur s'il souhaite sauvegarder avant de quitter. Une réponse affirmative déclenche la sauvegarde; une réponse négative quitte sans sauvegarder. En cas d'échec, la fermeture est annulée.
+- Des programmes de vérification autonomes couvrent notamment l'absence de fichier, les fichiers invalides et l'échec de sauvegarde. Les résultats des scénarios de vérification, y compris les contrôles manuels, sont consignés dans `Docs/verification.md`.
 
 ## 9. Rôle des fichiers
 
@@ -129,4 +129,3 @@ Cette répartition est à confirmer. Le fichier `MenuConsole.java` et la classe 
 | `SauvegardeTaches.java`  | Sauvegarder les tâches                     |
 | `ChargementTaches.java`  | Recharger les tâches                       |
 | `MenuConsole.java`       | Afficher le menu et gérer les saisies      |
-

@@ -206,3 +206,50 @@ Compilation de toutes les sources Java et des programmes de vérification réuss
 - **Résultat attendu :** le choix explicite « non » quitte sans créer de fichier; « oui » sauvegarde avant de quitter; un échec de sauvegarde empêche la fermeture et permet à l'utilisateur de choisir à nouveau.
 - **Résultat obtenu :** conforme.
 - **Statut :** Réussi — 3 assertions.
+
+## TF-10 — Recharger les tâches au démarrage
+
+**Date :** 2026-10-19
+**Composants vérifiés :** `Main`, `ChargementTaches`, `GestionTachesImpl.remplacerToutes`
+
+### Scénario normal — fichier valide
+
+- **Étapes :** créer un fichier TF1 valide dans un répertoire temporaire, lancer l'application depuis ce répertoire, afficher les tâches, puis quitter sans sauvegarder.
+- **Résultat attendu :** l'application démarre et affiche la tâche précédemment enregistrée.
+- **Résultat obtenu :** conforme; code de sortie `0` et tâche affichée.
+- **Statut :** Réussi.
+
+## TF-11 — Démarrer sans fichier de données
+
+**Date :** 2026-10-19
+**Composants vérifiés :** `Main`, `ChargementTaches`, `TestFichierAbsent`
+
+### Scénario normal — première utilisation
+
+- **Étapes :** lancer l'application depuis un répertoire temporaire sans `data/taches.tf1`, afficher la liste, quitter sans sauvegarder; exécuter aussi `TestFichierAbsent`.
+- **Résultat attendu :** le chargement retourne une liste vide, l'application démarre et le menu indique qu'aucune tâche n'est enregistrée.
+- **Résultat obtenu :** conforme; code de sortie `0`, message de liste vide affiché et test autonome réussi.
+- **Statut :** Réussi.
+
+## TF-12 — Gérer un fichier illisible ou mal formé
+
+**Date :** 2026-10-19
+**Composants vérifiés :** `Main`, `ChargementTaches`, `FormatTaches`, `TestFichierInvalide`
+
+### Scénarios d'erreur
+
+- **Étapes :** vérifier un en-tête inconnu, une ligne de tâche corrompue, un fichier vide, des identifiants dupliqués, un fichier encodé en UTF-8 invalide et un lancement avec des données corrompues.
+- **Résultat attendu :** chaque format invalide est rejeté; au démarrage, l'application signale l'erreur, retourne un code de sortie non nul et ne modifie pas le fichier.
+- **Résultat obtenu :** conforme; les erreurs de chargement sont détectées, le démarrage invalide retourne le code `1` et les octets des fichiers d'origine restent identiques. Le fichier UTF-8 invalide est également rejeté. `TestFichierInvalide` a réussi ses trois cas.
+- **Statut :** Réussi.
+
+## Revalidation intégrée TF-01 à TF-15
+
+**Date :** 2026-10-19
+**Méthode :** compilation de toutes les sources Java dans un répertoire temporaire, puis exécution d'un banc d'intégration temporaire couvrant les scénarios normaux, erreurs pertinentes, parcours console, stockage et démarrage. Aucun fichier généré n'a été ajouté au dépôt.
+
+- Compilation : réussie avec `javac -encoding UTF-8`.
+- Banc d'intégration : **37 assertions réussies** pour TF-01 à TF-15. Les scénarios comprennent notamment les validations des entrées, la modification et la suppression d'échéances, les opérations de stockage, le chargement au démarrage, l'absence de fichier, la préservation d'un fichier corrompu, la continuité des identifiants et les deux choix de sauvegarde à la fermeture.
+- Programmes autonomes : `TestFichierAbsent`, `TestFichierInvalide` (en-tête, ligne corrompue et fichier vide) et `TestErreurSauvegarde` : tous réussis.
+- Revue documentaire des PR #30 à #33 : elles sont fusionnées dans `develop` et ont reçu des commentaires de membres de l'équipe. TF-07 a également fait l'objet de la revue visuelle demandée.
+- **Suivi DoD :** TF-14 est indiqué « Terminé » dans le backlog à la demande de l'équipe. Les assertions fonctionnelles sont réussies et la PR #26 est fusionnée; toutefois, cette PR porte sur des données simulées et aucune revue traçable spécifiquement liée à TF-14 n'a pu être confirmée.
