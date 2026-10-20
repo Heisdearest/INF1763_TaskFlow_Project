@@ -34,8 +34,9 @@ public final class ChargementTaches {
 
         if (Files.notExists(chemin)) {
 
-            return List.of();
-
+            // Première utilisation :
+            // aucune sauvegarde n'est disponible.
+            return Collections.emptyList();
         }
 
         // Vérifier que le chemin correspond à un fichier.
