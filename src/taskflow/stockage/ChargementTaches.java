@@ -110,6 +110,28 @@ public final class ChargementTaches {
             );
 
         }
+        // Vérifier qu'il n'existe pas de lignes vides
+
+        // à l'intérieur du fichier.
+
+        for (int i = 1; i < lignes.size(); i++) {
+
+            if (lignes.get(i).isEmpty()
+                    && i != lignes.size() - 1) {
+
+                    throw new IOException(
+
+                        "Ligne vide inattendue à la ligne "
+
+                        + (i + 1)
+
+                    );
+
+                }
+
+            }
+
+
 
         List<Tache> resultat = new ArrayList<>();
 

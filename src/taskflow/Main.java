@@ -28,8 +28,26 @@ public final class Main {
         } catch (IOException | IllegalArgumentException e) {
 
             System.err.println(
-                "Démarrage interrompu : "
-                + e.getMessage()
+                "ERREUR : impossible de charger les tâches."
+            );
+
+            System.err.println(
+                "Détail : " + e.getMessage()
+            );
+
+            System.err.println(
+                "Le fichier de sauvegarde est peut-être "
+                + "invalide ou corrompu."
+            );
+
+            System.err.println(
+                "Aucune modification n'a été apportée "
+                + "au fichier de sauvegarde."
+            );
+
+            System.err.println(
+                "L'application ne démarrera pas afin "
+                + "d'éviter d'écraser les données existantes."
             );
 
             System.exit(1);
