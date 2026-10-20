@@ -20,6 +20,8 @@ public interface GestionTaches {
 
     boolean terminerTache(int id);
 
+    boolean supprimerEcheance(int id);
+
     void modifierPriorite(
         int id,
         Priorite priorite

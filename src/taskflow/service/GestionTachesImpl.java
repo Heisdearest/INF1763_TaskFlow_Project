@@ -269,4 +269,19 @@ public final class GestionTachesImpl implements GestionTaches {
     }
 
 
+    @Override
+    public boolean supprimerEcheance(int id) {
+    
+        if (id <= 0) {
+            throw new IllegalArgumentException(
+                "L'identifiant doit être un entier positif."
+            );
+        }
+    
+        Tache tache = trouverParId(id);
+    
+        return tache.supprimerEcheance();
+    }
+
+
 }

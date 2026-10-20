@@ -237,12 +237,24 @@ public final class MenuConsole {
                     }
 
                     case "6" -> {
-
-                        gestion.modifierEcheance(id(), null);
-
-                        System.out.println(
-                            "Échéance retirée."
-                        );
+ 
+                        int identifiant = id();
+                    
+                        boolean supprimee =
+                            gestion.supprimerEcheance(identifiant);
+                    
+                        if (supprimee) {
+                    
+                            System.out.println(
+                                "Date d'échéance supprimée avec succès."
+                            );
+                    
+                        } else {
+                    
+                            System.out.println(
+                                "Cette tâche ne possède aucune échéance."
+                            );
+                        }
                     }
 
                     case "7" -> {

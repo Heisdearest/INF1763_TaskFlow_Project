@@ -102,4 +102,16 @@ public final class Tache {
     
         this.echeance = nouvelleEcheance;
     }
+
+
+    public boolean supprimerEcheance() {
+    
+        if (this.echeance == null) {
+            return false;
+        }
+    
+        this.echeance = null;
+    
+        return true;
+    }
 }
