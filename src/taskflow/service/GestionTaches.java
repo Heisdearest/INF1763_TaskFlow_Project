@@ -31,4 +31,6 @@ public interface GestionTaches {
     );
 
     void remplacerToutes(List<Tache> taches);
+
+    void ajouterEcheance(int id, LocalDate echeance);
 }

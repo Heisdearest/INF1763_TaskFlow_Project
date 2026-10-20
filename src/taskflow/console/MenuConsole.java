@@ -220,17 +220,19 @@ public final class MenuConsole {
                         );
                     }
 
-                    case "5" -> {
-
+                   case "5" -> {
+ 
                         int identifiant = id();
-                        LocalDate d = date(false);
-
-                        gestion.modifierEcheance(
-                            identifiant, d
+                    
+                        LocalDate nouvelleDate = date(false);
+                    
+                        gestion.ajouterEcheance(
+                            identifiant,
+                            nouvelleDate
                         );
-
+                    
                         System.out.println(
-                            "Échéance enregistrée."
+                            "Date d'échéance ajoutée avec succès."
                         );
                     }
 
