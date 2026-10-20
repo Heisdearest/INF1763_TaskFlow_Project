@@ -233,4 +233,24 @@ public final class GestionTachesImpl implements GestionTaches {
         prochainId = plusGrandId + 1;
 
     }
+
+    @Override
+    public void ajouterEcheance(int id, LocalDate echeance) {
+    
+        if (id <= 0) {
+            throw new IllegalArgumentException(
+                "L'identifiant doit être un entier positif."
+            );
+        }
+    
+        if (echeance == null) {
+            throw new IllegalArgumentException(
+                "La date d'échéance est obligatoire."
+            );
+        }
+    
+        Tache tache = trouverParId(id);
+    
+        tache.ajouterEcheance(echeance);
+    }
 }

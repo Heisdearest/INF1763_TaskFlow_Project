@@ -64,4 +64,21 @@ public final class Tache {
     public void terminer() {
         this.statut = Statut.TERMINEE;
     }
+
+    public void ajouterEcheance(LocalDate nouvelleEcheance) {
+ 
+        if (nouvelleEcheance == null) {
+            throw new IllegalArgumentException(
+                "La date d'échéance est obligatoire."
+            );
+        }
+    
+        if (this.echeance != null) {
+            throw new IllegalStateException(
+                "Cette tâche possède déjà une échéance."
+            );
+        }
+    
+        this.echeance = nouvelleEcheance;
+    }
 }
