@@ -126,9 +126,10 @@ public final class MenuConsole {
             System.out.println("2 - Afficher les tâches");
             System.out.println("3 - Terminer une tâche");
             System.out.println("4 - Modifier la priorité");
-            System.out.println("5 - Ajouter/modifier une échéance");
+            System.out.println("5 - Ajouter une échéance");
             System.out.println("6 - Retirer une échéance");
             System.out.println("7 - Sauvegarder");
+            System.out.println("8 - Modifier une échéance");
             System.out.println("0 - Quitter");
 
             try {
@@ -333,8 +334,48 @@ public final class MenuConsole {
  
                     case "0" -> {
 
+                        String reponse = demander(
+                            "Voulez-vous sauvegarder avant de quitter ? (O/N) : "
+                        );
+
+                        if (reponse.equalsIgnoreCase("O")) {
+
+                            try {
+
+                                SauvegardeTaches.sauvegarder(
+                                    fichier,
+                                    gestion.obtenirToutesLesTaches()
+                                );
+
+                                System.out.println(
+                                    "Sauvegarde réussie."
+                                );
+
+                            } catch (IOException e) {
+
+                                System.err.println(
+                                    "Échec de sauvegarde : "
+                                    + e.getMessage()
+                                );
+
+                                System.out.println(
+                                    "Fermeture annulée pour éviter une perte de données."
+                                );
+
+                                break;
+                            }
+
+                        } else if (!reponse.equalsIgnoreCase("N")) {
+
+                            System.out.println(
+                                "Réponse invalide. Fermeture annulée."
+                            );
+
+                            break;
+                        }
+
                         System.out.println(
-                            "Au revoir. Pensez à sauvegarder."
+                            "Merci d'avoir utilisé TaskFlow. Au revoir !"
                         );
 
                         return;
