@@ -1,0 +1,19 @@
+# Fichiers compilés
+out/
+*.class
+
+# Données locales
+data/
+
+# Dossiers de tests manuels
+tests-manuels/
+tests-liste-vide/
+tests-sans-fichier/
+tests-fichier-invalide/
+tests-erreur-sauvegarde/
+
+# Fichiers temporaires
+*.tmp
+
+# Configuration locale
+.vscode/
