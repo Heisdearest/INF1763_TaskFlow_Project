@@ -1,0 +1,51 @@
+
+=== TaskFlow ===
+1 - Ajouter une tâche
+2 - Afficher les tâches
+3 - Terminer une tâche
+4 - Modifier la priorité
+5 - Ajouter une échéance
+6 - Retirer une échéance
+7 - Sauvegarder
+8 - Modifier une échéance
+0 - Quitter
+Choix : 
+========== LISTE DES TÂCHES ==========
+--------------------------------------
+Identifiant : 1
+Titre       : Terminer le projet
+Priorité    : NORMALE
+Statut      : A_FAIRE
+Échéance    : Aucune
+--------------------------------------
+Identifiant : 2
+Titre       : Preparer le rapport
+Priorité    : NORMALE
+Statut      : A_FAIRE
+Échéance    : Aucune
+--------------------------------------
+Nombre total de tâches : 2
+
+=== TaskFlow ===
+1 - Ajouter une tâche
+2 - Afficher les tâches
+3 - Terminer une tâche
+4 - Modifier la priorité
+5 - Ajouter une échéance
+6 - Retirer une échéance
+7 - Sauvegarder
+8 - Modifier une échéance
+0 - Quitter
+Choix : Titre : Priorité (Basse/Normale/Élevée) [Normale] : Erreur : Priorité invalide.
+
+=== TaskFlow ===
+1 - Ajouter une tâche
+2 - Afficher les tâches
+3 - Terminer une tâche
+4 - Modifier la priorité
+5 - Ajouter une échéance
+6 - Retirer une échéance
+7 - Sauvegarder
+8 - Modifier une échéance
+0 - Quitter
+Choix : Voulez-vous sauvegarder avant de quitter ? (O/N) : Merci d'avoir utilisé TaskFlow. Au revoir !
